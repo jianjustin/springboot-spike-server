@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>商品页面</title>
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      padding: 1rem;
+    }
+    main {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    article {
+      margin: 1rem 0;
+    }
+
+    /* Now lets do a Grid-based layout */
+
+    @supports (display: grid) {
+      main { 
+        max-width: 10000px;
+        margin: 0;
+      }
+      article {
+        margin: 0;
+      }
+      .deals {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 1rem;
+      }
+    }
+      
+    .deals {
+      font-family: Avenir, Roboto, Helvetica, san-serif; 
+      font-size: 80%;
+    }
+    .sale-item {
+      display: flex;
+      flex-flow: column;
+      border:  1px solid black;
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+    .sale-item > h1 {
+      margin: 1rem 1rem 0;
+    }
+    .sale-item > ul {
+      margin: 0 0 1rem;
+    }
+    .sale-item > p {
+      margin: 0.25em 1rem 1rem;
+    }
+    .sale-item > img {
+      order: -1;
+      align-self: center;
+    }
+    .sale-item > button {
+      margin-top: auto; 
+      background: teal;
+      color: white;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<main class="deals">
+
+  <article class="sale-item" th:each="item : ${list}">
+    <h1 th:text="${item.goods_name}">Printer 2</h1>
+    <p th:text="${item.goods_detail}">A la 1989.</p>
+	<p>秒杀信息：</p>
+    <ul>
+      <li>Monitor</li>
+      <li>Keyboard</li>
+      <li>Mouse</li>
+    </ul>
+    <img th:src="${item.goods_img}" alt="${item.goods_title}">
+    <button>秒杀</button>
+  </article>
+
+</main>
+
+  
+</body>
+</html>
